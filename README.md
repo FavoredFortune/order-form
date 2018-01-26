@@ -22,6 +22,7 @@ A few reasons:
 * JavaScript
 * MDN
 * Help on CSS style animations from Web Designer Depot and this article by Sara Viera: https://www.webdesignerdepot.com/2014/05/8-simple-css3-transitions-that-will-wow-your-users/
+* W3Schools on dropdown menus: https://www.w3schools.com/howto/howto_js_dropdown.asp
 * Jon Duckett HTML & CSS book
 * Jon Duckett JavaScript & jQuery book
 * Help from my teacher, classmates and TAs

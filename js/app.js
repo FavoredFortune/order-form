@@ -6,10 +6,8 @@ Images.totalNumberOfClicks = 0;
 
 Images.lastDisplayed = [];
 
-//access the section element from DOM
-var sectionEl = document.getElementById('product-section');
-//access the ul element from DOM
-var ulEl = document.getElementById('results');
+//access the table element from DOM
+var tableElement = document.getElementById('order-summary');
 
 //array to store names for our chart labels
 var imageNames = [];
@@ -94,20 +92,73 @@ if(localStorage.orderedItemCart){
   quantityCart = JSON.parse(localStorage.getItem('orderedQuantityCart'));
 }
 else {
-  var ulElement = document.getElementById('order-summary');
-  ulElement.textContent = 'Sorry there is no record of you selecting any items.';
+  var tableRowElement = document.getElementById('order-summary');
+  tableRow.textContent = 'Sorry there is no record of you selecting any items.';
+
 }
 
 //display ordered items and quantity on the page
-var ulElement = document.getElementById('order-summary');
-var liElement = document.createElement('li');
+function renderTable(){
+
+  //establish table content rows and cells (data cells)
+  var tableRowElement = document.createElement('tr');
+  var tableDataElement = document.createElement('td');
+
+  //create row for each product that has data cells for votes, times shown and % click rate
+  for(var i = 0; i < productNames.length; i++){
+    tableRowElement = document.createElement('tr');
+
+    tableDataElement = document.createElement('td');
+    tableDataElement.textContent = productNames[i];
+
+    tableRowElement.appendChild(tableDataElement);
+    productTable.appendChild(tableRowElement);
+
+    tableDataElement = document.createElement('td');
+    tableDataElement.textContent = productVotes[i];
+    tableRowElement.appendChild(tableDataElement);
+    productTable.appendChild(tableRowElement);
+
+    tableDataElement = document.createElement('td');
+    tableDataElement.textContent = productShown[i];
+    tableRowElement.appendChild(tableDataElement);
+    productTable.appendChild(tableRowElement);
+
 
 for(var i in itemCart){
   liElement.textContent = 'You\'ve selected ' + quantityCart[i] + 'of ' + itemCart +  
 }
 
 
+function makeHeaderRow(){
 
+  //header for table of results about product votes
+  var productName = document.createElement ('td');
+  var tableRowElement = document.createElement('tr');
+
+  productName.textContent = 'Product';
+  tableRowElement.appendChild(productName);
+
+  productTable.appendChild(tableRowElement);
+
+  var timesVoted = document.createElement ('td');
+  timesVoted.textContent = '# Votes';
+  tableRowElement.appendChild(timesVoted);
+
+  productTable.appendChild(tableRowElement);
+
+  var timesShown = document.createElement ('td');
+  timesShown.textContent = '# Times Shown';
+  tableRowElement.appendChild(timesShown);
+
+  productTable.appendChild(tableRowElement);
+
+  var preferenceRate = document.createElement ('td');
+  preferenceRate.textContent = 'Preference Rate %';
+  tableRowElement.appendChild(preferenceRate);
+
+  productTable.appendChild(tableRowElement);
+}
 
 //create event listener for clicks on images
 sectionElement.addEventListener('click', manageClick);

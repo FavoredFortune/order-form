@@ -51,6 +51,32 @@ new Images('tentacle usb', 'img/usb.gif');
 new Images('looped water can', 'img/water-can.jpg');
 new Images('wine glass', 'img/wine-glass.jpg');
 
+
+//define handleClick function
+function handleClick(event) {
+  //track total number of clicks
+  Images.totalNumberOfClicks += 1;
+
+  console.log(Images.totalNumberOfClicks);
+  console.log(event.target.alt);
+  
+  //count clicks on a specific image
+  for (var i in Images.allBusMallImages) {
+    if (event.target.alt === Images.allBusMallImages[i].name) {
+      Images.allBusMallImages[i].votes += 1;
+    }
+  }
+  if (Images.totalNumberOfClicks > 24) {
+    sectionEl.removeEventListener('click', handleClick);
+    alert('Thank you for your participation in our research focus group. Here are your results, scroll down for the graph of selections.');
+    showResults();
+    updateVotes();
+    renderChart();
+  } else {
+    allRandomImages();
+  }
+}
+
 //LOCAL STORAGE
 var multipleSurveysTotal = [];
 
@@ -98,9 +124,47 @@ else {
   ulElement.textContent = 'Sorry there is no record of you selecting any items.';
 }
 
+//LOCAL STORAGE for index.html
+//store the items the user selects
+var orderedItemCart = [];
+
+//EVENT LISTENER
+//access the section element from DOM
+var sectionEl = document.getElementById('myDropdown');
+sectionEl.addEventListener('click', handleDropdownClick);
+
+function handleDropdownClick(event) {
+  for (var i in Images.allBusMallImages) {
+    if (event.target.alt === Images.allBusMallImages[i].name) {
+      
+      //send to local storage
+    }
+  }
+
+}
+
+//when the user clicks an item, store the item they click in local storage
+      //upon click, push the item clicked in to orderedItemCart
+
+//upon click, prompt the user to select quantity
+var orderedQuantityCart = [];
+
+//save the quantity chosen to local storage
+
+
+// if (localStorage.votesInStorage) {
+//   for (var j = 0; j < productVotes.length; j++) {
+
+//     orderedItemCart[j] = productVotes[j] + JSON.parse(localStorage.votesInStorage)[j];
+//   }
+// } else {
+//   multipleSurveysTotal = productVotes;
+// }
+// localStorage.votesInStorage = JSON.stringify(orderedItemCart);
+
+
 //display ordered items and quantity on the page
-var ulElement = document.getElementById('order-summary');
-var liElement = document.createElement('li');
+
 
 for(var i in itemCart){
   liElement.textContent = 'You\'ve selected ' + quantityCart[i] + 'of ' + itemCart +  

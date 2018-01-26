@@ -117,6 +117,22 @@ if (!event.target.matches('.dropbutton')) {
 //store the items the user selects
 var orderedItemCart = [];
 
+
+//EVENT LISTENER
+//access the section element from DOM
+var sectionEl = document.getElementById('myDropdown');
+sectionEl.addEventListener('click', handleDropdownClick);
+
+function handleDropdownClick(event) {
+  for (var i in Images.allBusMallImages) {
+    if (event.target.alt === Images.allBusMallImages[i].name) {
+      
+      //send to local storage
+    }
+  }
+
+}
+
 //when the user clicks an item, store the item they click in local storage
       //upon click, push the item clicked in to orderedItemCart
 
